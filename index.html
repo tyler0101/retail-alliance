@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>散户联盟 - The Retail Alliance</title>
+    <style>
+        /* 像素字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        body {
+            background: #0a0a2a;
+            color: #00ff00;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* 像素网格背景 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(10, 10, 42, 0.9), rgba(10, 10, 42, 0.9)),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 0, 0.1) 2px, rgba(0, 255, 0, 0.1) 4px);
+            z-index: -1;
+        }
+        
+        /* 容器样式 */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 4px solid #00ff00;
+            margin-bottom: 40px;
+        }
+        
+        .pixel-title {
+            font-size: 2.5em;
+            color: #ffff00;
+            text-shadow: 4px 4px 0 #ff00ff;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 4px 4px 0 #ff00ff, 0 0 10px #ffff00; }
+            to { text-shadow: 4px 4px 0 #ff00ff, 0 0 20px #ffff00, 0 0 30px #ffff00; }
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #00ffff;
+            margin-bottom: 30px;
+        }
+        
+        /* 宣言样式 */
+        .manifesto {
+            background: rgba(0, 255, 0, 0.1);
+            border: 3px solid #00ff00;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .manifesto::before {
+            content: ">";
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            color: #ffff00;
+        }
+        
+        /* 像素艺术区域 */
+        .pixel-art {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .whale-vs-fish {
+            display: inline-block;
+            image-rendering: pixelated;
+            font-size: 20px;
+            line-height: 1;
+        }
+        
+        /* 内容区块 */
+        .content-block {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ffff;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        h2 {
+            color: #ffff00;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        h3 {
+            color: #00ffff;
+            margin: 15px 0 10px 0;
+            font-size: 1em;
+        }
+        
+        /* 列表样式 */
+        .pixel-list {
+            list-style: none;
+        }
+        
+        .pixel-list li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .pixel-list li::before {
+            content: "■";
+            position: absolute;
+            left: 0;
+            color: #ff00ff;
+        }
+        
+        /* 按钮样式 */
+        .pixel-button {
+            display: inline-block;
+            background: #ff00ff;
+            color: #ffffff;
+            padding: 15px 30px;
+            margin: 10px;
+            text-decoration: none;
+            border: none;
+            border-bottom: 4px solid #cc00cc;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+        
+        .pixel-button:hover {
+            transform: translateY(2px);
+            border-bottom-width: 2px;
+        }
+        
+        .pixel-button.primary {
+            background: #ffff00;
+            color: #000000;
+            border-bottom-color: #cccc00;
+        }
+        
+        /* 合约地址 */
+        .contract-address {
+            background: rgba(255, 255, 0, 0.2);
+            border: 2px solid #ffff00;
+            padding: 15px;
+            margin: 20px 0;
+            word-break: break-all;
+            font-size: 0.8em;
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 2px solid #00ff00;
+            font-size: 0.7em;
+            color: #00ffff;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 600px) {
+            .pixel-title { font-size: 1.8em; }
+            .subtitle { font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="pixel-title">散户联盟</h1>
+            <div class="subtitle">The Retail Alliance</div>
+            <div class="subtitle">巨鲸主宰过去，我们主宰未来</div>
+        </header>
+
+        <section class="manifesto">
+            <strong>我们是一群被割惯了的韭菜，是K线图上无人问津的涟漪，是巨鲸眼中微不足道的鱼粮。</strong><br><br>
+            但今天，一切到此为止。当巨鲸们在高频交易的暗池中密谋，当项目方用华丽的谎言编织陷阱，我们选择不再沉默。
+            <strong>散户联盟</strong>在此集结——这不是一个项目，这是一场运动，一场属于每一个普通人的金融逆袭。
+        </section>
+
+        <div class="pixel-art">
+            <pre class="whale-vs-fish">
+    🐋 巨鲸 VS 鱼群 🐟
+    ####################
+    #                  #
+    #    🐳           #
+    #     ︵          #
+    #   🐠🐠🐠     #
+    #  🐠 🐠🐠🐠   #
+    # 🐠🐠🐠🐠🐠  #
+    ####################
+            </pre>
+        </div>
+
+        <section class="content-block">
+            <h2>🎯 我们的使命</h2>
+            <ul class="pixel-list">
+                <li><strong>用团结对抗垄断</strong> - 孤举者难起，众行者易趋</li>
+                <li><strong>用透明对抗暗箱</strong> - 信息共享，无人掉队</li>
+                <li><strong>用共识对抗操控</strong> - 从鱼粮进化成捕鲸人</li>
+            </ul>
+        </section>
+
+        <section class="content-block">
+            <h2>🎮 核心MEME文化</h2>
+            <div class="content-block">
+                <h3>🐋 鲸落万物生</h3>
+                <p>巨鲸的陨落，将滋养整个生态的我们</p>
+            </div>
+            <div class="content-block">
+                <h3>🐠 小鱼啃巨鲸</h3>
+                <p>团结一致，每次一口，积少成多，直至胜利</p>
+            </div>
+            <div class="content-block">
+                <h3>🛡️ 反收割联盟</h3>
+                <p>终结不公的收割行为，重塑市场秩序</p>
+            </div>
+        </section>
+
+        <section class="content-block">
+            <h2>🚀 立即加入</h2>
+            <div style="text-align: center; margin: 20px 0;">
+                <a href="#" class="pixel-button primary">加入 Telegram</a>
+                <a href="#" class="pixel-button">关注 Twitter</a>
+            </div>
+            
+            <h3>合约地址</h3>
+            <div class="contract-address">
+                0x
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 散户联盟 - The Retail Alliance</p>
+            <p>这里没有神，只有战友</p>
+        </footer>
+    </div>
+
+    <script>
+        // 简单的像素动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.pixel-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // 添加点击效果
+                    this.style.transform = 'translateY(4px)';
+                    this.style.borderBottomWidth = '0px';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(0px)';
+                        this.style.borderBottomWidth = '4px';
+                    }, 100);
+                    
+                    // 这里可以添加实际的链接跳转
+                    const href = this.getAttribute('href');
+                    if (href && href !== '#') {
+                        setTimeout(() => {
+                            window.open(href, '_blank');
+                        }, 200);
+                    }
+                });
+            });
+            
+            // 像素艺术动画
+            const pixelArt = document.querySelector('.whale-vs-fish');
+            setInterval(() => {
+                pixelArt.style.transform = 'translateX(2px)';
+                setTimeout(() => {
+                    pixelArt.style.transform = 'translateX(-2px)';
+                }, 200);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
