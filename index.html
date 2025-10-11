@@ -3,301 +3,628 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>散户联盟 - The Retail Alliance</title>
+    <title>关税坑 TariffPit - 特朗普的坑，我们的金矿！</title>
     <style>
-        /* 像素字体 */
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700;900&family=Press+Start+2P&display=swap');
+        
+        :root {
+            --trump-orange: #FF6B35;
+            --bitcoin-orange: #F7931A;
+            --us-red: #BF0A30;
+            --us-blue: #002868;
+            --gold: #FFD700;
+            --dirt-brown: #8B4513;
+            --pit-black: #2F2F2F;
+        }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Press Start 2P', cursive;
         }
         
         body {
-            background: #0a0a2a;
-            color: #00ff00;
-            line-height: 1.6;
+            background: linear-gradient(135deg, var(--us-red) 0%, var(--us-blue) 50%, var(--trump-orange) 100%);
+            font-family: 'Comic Neue', cursive;
             overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(191, 10, 48, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(0, 40, 104, 0.2) 0%, transparent 50%);
         }
-        
-        /* 像素网格背景 */
-        body::before {
-            content: "";
+
+        /* 关税坑动画背景 */
+        .tariff-pit-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(rgba(10, 10, 42, 0.9), rgba(10, 10, 42, 0.9)),
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 0, 0.1) 2px, rgba(0, 255, 0, 0.1) 4px);
+                radial-gradient(ellipse at center, transparent 30%, var(--dirt-brown) 100%),
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(139, 69, 19, 0.3) 10px, rgba(139, 69, 19, 0.3) 20px);
+            z-index: -2;
+            animation: pitBreath 4s ease-in-out infinite;
+        }
+
+        @keyframes pitBreath {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.02); opacity: 1; }
+        }
+
+        /* 金钱雨效果 */
+        .money-rain {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
             z-index: -1;
         }
-        
-        /* 容器样式 */
-        .container {
-            max-width: 800px;
+
+        .money-bill {
+            position: absolute;
+            font-size: 2rem;
+            animation: moneyFall 8s linear infinite;
+            opacity: 0;
+            transform: rotate(0deg);
+        }
+
+        @keyframes moneyFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 语言切换 - 美元风格 */
+        .dollar-language {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--us-red), var(--us-blue));
+            border: 3px solid var(--gold);
+            border-radius: 25px;
+            padding: 8px;
+            display: flex;
+            gap: 8px;
+            box-shadow: 
+                5px 5px 0 #000,
+                0 0 20px var(--gold);
+            backdrop-filter: blur(10px);
+        }
+
+        .dollar-lang-btn {
+            background: var(--gold);
+            border: 2px solid #000;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 900;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            font-family: 'Comic Neue', cursive;
+        }
+
+        .dollar-lang-btn.active {
+            background: #000;
+            color: var(--gold);
+            transform: rotate(-2deg);
+        }
+
+        .dollar-lang-btn:hover {
+            transform: scale(1.1) rotate(2deg);
+        }
+
+        /* 主容器 */
+        .pit-container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        
-        /* 头部样式 */
-        header {
+
+        /* 英雄区域 - 嘲讽风格 */
+        .satire-hero {
             text-align: center;
-            padding: 40px 0;
-            border-bottom: 4px solid #00ff00;
-            margin-bottom: 40px;
-        }
-        
-        .pixel-title {
-            font-size: 2.5em;
-            color: #ffff00;
-            text-shadow: 4px 4px 0 #ff00ff;
-            margin-bottom: 20px;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            from { text-shadow: 4px 4px 0 #ff00ff, 0 0 10px #ffff00; }
-            to { text-shadow: 4px 4px 0 #ff00ff, 0 0 20px #ffff00, 0 0 30px #ffff00; }
-        }
-        
-        .subtitle {
-            font-size: 1.2em;
-            color: #00ffff;
-            margin-bottom: 30px;
-        }
-        
-        /* 宣言样式 */
-        .manifesto {
-            background: rgba(0, 255, 0, 0.1);
-            border: 3px solid #00ff00;
-            padding: 30px;
-            margin: 30px 0;
+            padding: 120px 20px 80px;
             position: relative;
         }
-        
-        .manifesto::before {
-            content: ">";
-            position: absolute;
-            left: 10px;
-            top: 10px;
-            color: #ffff00;
-        }
-        
-        /* 像素艺术区域 */
-        .pixel-art {
-            text-align: center;
-            margin: 40px 0;
-        }
-        
-        .whale-vs-fish {
+
+        .trump-badge {
             display: inline-block;
-            image-rendering: pixelated;
-            font-size: 20px;
-            line-height: 1;
+            background: linear-gradient(45deg, var(--trump-orange), var(--gold));
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: 900;
+            margin-bottom: 30px;
+            border: 4px solid #000;
+            box-shadow: 
+                8px 8px 0 #000,
+                0 0 30px var(--trump-orange);
+            animation: trumpHair 3s ease-in-out infinite;
+            transform: rotate(-3deg);
+            position: relative;
+            overflow: hidden;
         }
-        
-        /* 内容区块 */
-        .content-block {
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid #00ffff;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        
-        h2 {
-            color: #ffff00;
-            margin-bottom: 20px;
+
+        .trump-badge::before {
+            content: "💸";
+            position: absolute;
+            right: -10px;
+            top: -10px;
             font-size: 1.5em;
         }
-        
-        h3 {
-            color: #00ffff;
-            margin: 15px 0 10px 0;
-            font-size: 1em;
+
+        @keyframes trumpHair {
+            0%, 100% { transform: rotate(-3deg) scale(1); }
+            50% { transform: rotate(2deg) scale(1.05); }
         }
-        
-        /* 列表样式 */
-        .pixel-list {
-            list-style: none;
+
+        .pit-title {
+            font-size: clamp(3rem, 12vw, 6rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--bitcoin-orange), var(--gold), var(--trump-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 
+                6px 6px 0 #000,
+                0 0 30px rgba(247, 147, 26, 0.5);
+            font-family: 'Comic Neue', cursive;
+            animation: titleShake 4s ease-in-out infinite;
         }
-        
-        .pixel-list li {
-            margin: 10px 0;
-            padding-left: 20px;
+
+        @keyframes titleShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .slogan {
+            font-size: clamp(1.4rem, 5vw, 2.2rem);
+            color: var(--gold);
+            margin-bottom: 40px;
+            text-shadow: 
+                3px 3px 0 #000,
+                0 0 20px rgba(255, 215, 0, 0.7);
+            transform: rotate(-2deg);
+            animation: sloganGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes sloganGlow {
+            from { text-shadow: 3px 3px 0 #000, 0 0 20px rgba(255, 215, 0, 0.7); }
+            to { text-shadow: 3px 3px 0 #000, 0 0 40px rgba(255, 215, 0, 1); }
+        }
+
+        /* 嘲讽口号网格 */
+        .satire-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 60px 0;
+        }
+
+        .satire-card {
+            background: linear-gradient(135deg, var(--us-blue), var(--us-red));
+            border: 4px solid var(--gold);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
             position: relative;
+            overflow: hidden;
+            box-shadow: 
+                8px 8px 0 #000,
+                0 0 30px rgba(191, 10, 48, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
-        
-        .pixel-list li::before {
-            content: "■";
+
+        .satire-card::before {
+            content: "";
             position: absolute;
-            left: 0;
-            color: #ff00ff;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
         }
-        
-        /* 按钮样式 */
-        .pixel-button {
+
+        .satire-card:hover::before {
+            left: 100%;
+        }
+
+        .satire-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 
+                12px 12px 0 #000,
+                0 0 50px rgba(255, 215, 0, 0.8);
+        }
+
+        .satire-card h3 {
+            color: var(--gold);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .satire-card p {
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* 特朗普推特风格区块 */
+        .trump-tweet {
+            background: #000;
+            border: 4px solid var(--trump-orange);
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 
+                8px 8px 0 var(--trump-orange),
+                0 0 30px rgba(255, 107, 53, 0.5);
+        }
+
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tweet-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--trump-orange), var(--gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            border: 3px solid var(--gold);
+        }
+
+        .tweet-info h4 {
+            color: var(--gold);
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .tweet-info span {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .tweet-content {
+            color: #fff;
+            font-size: 1.2em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .tweet-stats {
+            display: flex;
+            gap: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* 代币信息 - 坑洞风格 */
+        .pit-token {
+            background: var(--dirt-brown);
+            border: 5px solid var(--pit-black);
+            padding: 40px;
+            margin: 50px 0;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            text-align: center;
+            position: relative;
+            box-shadow: 
+                inset 0 0 50px rgba(0, 0, 0, 0.5),
+                0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .token-title {
+            color: var(--gold);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        .contract-box {
+            background: #000;
+            color: var(--gold);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            border: 2px dashed var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contract-box::after {
+            content: "点击复制";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gold);
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: 900;
+        }
+
+        /* 购买按钮 - 美元风格 */
+        .buy-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .dollar-button {
             display: inline-block;
-            background: #ff00ff;
-            color: #ffffff;
-            padding: 15px 30px;
+            background: linear-gradient(45deg, var(--bitcoin-orange), var(--gold));
+            color: #000;
+            padding: 20px 50px;
             margin: 10px;
             text-decoration: none;
-            border: none;
-            border-bottom: 4px solid #cc00cc;
-            font-size: 0.9em;
+            border: 4px solid #000;
+            font-size: 1.5em;
+            font-weight: 900;
             cursor: pointer;
-            transition: all 0.1s;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 8px 8px 0 #000;
+            transform: rotate(-1deg);
         }
-        
-        .pixel-button:hover {
-            transform: translateY(2px);
-            border-bottom-width: 2px;
+
+        .dollar-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
         }
-        
-        .pixel-button.primary {
-            background: #ffff00;
-            color: #000000;
-            border-bottom-color: #cccc00;
+
+        .dollar-button:hover::before {
+            left: 100%;
         }
-        
-        /* 合约地址 */
-        .contract-address {
-            background: rgba(255, 255, 0, 0.2);
-            border: 2px solid #ffff00;
-            padding: 15px;
-            margin: 20px 0;
-            word-break: break-all;
-            font-size: 0.8em;
+
+        .dollar-button:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 12px 12px 0 #000;
         }
-        
-        /* 页脚 */
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            border-top: 2px solid #00ff00;
-            font-size: 0.7em;
-            color: #00ffff;
-        }
-        
+
         /* 响应式设计 */
-        @media (max-width: 600px) {
-            .pixel-title { font-size: 1.8em; }
-            .subtitle { font-size: 0.9em; }
+        @media (max-width: 768px) {
+            .satire-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dollar-button {
+                padding: 15px 30px;
+                font-size: 1.2em;
+            }
+            
+            .pit-title {
+                font-size: clamp(2rem, 10vw, 4rem);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 class="pixel-title">散户联盟</h1>
-            <div class="subtitle">The Retail Alliance</div>
-            <div class="subtitle">巨鲸主宰过去，我们主宰未来</div>
-        </header>
-
-        <section class="manifesto">
-            <strong>我们是一群被割惯了的韭菜，是K线图上无人问津的涟漪，是巨鲸眼中微不足道的鱼粮。</strong><br><br>
-            但今天，一切到此为止。当巨鲸们在高频交易的暗池中密谋，当项目方用华丽的谎言编织陷阱，我们选择不再沉默。
-            <strong>散户联盟</strong>在此集结——这不是一个项目，这是一场运动，一场属于每一个普通人的金融逆袭。
+    <!-- 背景效果 -->
+    <div class="tariff-pit-bg"></div>
+    <div class="money-rain" id="moneyRain"></div>
+    
+    <!-- 语言切换 -->
+    <div class="dollar-language">
+        <button class="dollar-lang-btn active" data-lang="zh">中文 🇨🇳</button>
+        <button class="dollar-lang-btn" data-lang="en">English 🇺🇸</button>
+    </div>
+    
+    <div class="pit-container">
+        <!-- 英雄区域 -->
+        <section class="satire-hero">
+            <div class="trump-badge" data-i18n="badge">💸 特朗普特别赞助 💸</div>
+            <h1 class="pit-title" data-i18n="title">关税坑</h1>
+            <p class="slogan" data-i18n="slogan">"关税一出，BTC进坑，我们填坑致富！"</p>
         </section>
-
-        <div class="pixel-art">
-            <pre class="whale-vs-fish">
-    🐋 巨鲸 VS 鱼群 🐟
-    ####################
-    #                  #
-    #    🐳           #
-    #     ︵          #
-    #   🐠🐠🐠     #
-    #  🐠 🐠🐠🐠   #
-    # 🐠🐠🐠🐠🐠  #
-    ####################
-            </pre>
-        </div>
-
-        <section class="content-block">
-            <h2>🎯 我们的使命</h2>
-            <ul class="pixel-list">
-                <li><strong>用团结对抗垄断</strong> - 孤举者难起，众行者易趋</li>
-                <li><strong>用透明对抗暗箱</strong> - 信息共享，无人掉队</li>
-                <li><strong>用共识对抗操控</strong> - 从鱼粮进化成捕鲸人</li>
-            </ul>
-        </section>
-
-        <section class="content-block">
-            <h2>🎮 核心MEME文化</h2>
-            <div class="content-block">
-                <h3>🐋 鲸落万物生</h3>
-                <p>巨鲸的陨落，将滋养整个生态的我们</p>
-            </div>
-            <div class="content-block">
-                <h3>🐠 小鱼啃巨鲸</h3>
-                <p>团结一致，每次一口，积少成多，直至胜利</p>
-            </div>
-            <div class="content-block">
-                <h3>🛡️ 反收割联盟</h3>
-                <p>终结不公的收割行为，重塑市场秩序</p>
-            </div>
-        </section>
-
-        <section class="content-block">
-            <h2>🚀 立即加入</h2>
-            <div style="text-align: center; margin: 20px 0;">
-                <a href="#" class="pixel-button primary">加入 Telegram</a>
-                <a href="#" class="pixel-button">关注 Twitter</a>
+        
+        <!-- 嘲讽内容网格 -->
+        <section class="satire-grid">
+            <div class="satire-card">
+                <h3 data-i18n="card1_title">🕳️ 特朗普的坑</h3>
+                <p data-i18n="card1_desc">每次关税威胁，比特币就掉坑里。但这次，我们把这个坑变成了金矿！</p>
             </div>
             
-            <h3>合约地址</h3>
-            <div class="contract-address">
-                0x19d7b0633cf758b23392af85f7cdd5a9f7e74444
+            <div class="satire-card">
+                <h3 data-i18n="card2_title">💰 我们的金矿</h3>
+                <p data-i18n="card2_desc">当别人在坑里哭泣时，我们在坑里挖矿。关税坑代币 - 把政治风险变成收益！</p>
+            </div>
+            
+            <div class="satire-card">
+                <h3 data-i18n="card3_title">🎯 精准嘲讽</h3>
+                <p data-i18n="card3_desc">我们不是制造恐慌，我们是在恐慌中制造机会。感谢特朗普的免费营销！</p>
             </div>
         </section>
-
-        <footer>
-            <p>© 2025 散户联盟 - The Retail Alliance</p>
-            <p>这里没有神，只有战友</p>
-        </footer>
+        
+        <!-- 特朗普推特风格 -->
+        <section class="trump-tweet">
+            <div class="tweet-header">
+                <div class="tweet-avatar">👺</div>
+                <div class="tweet-info">
+                    <h4 data-i18n="tweet_name">Donald J. Trump</h4>
+                    <span data-i18n="tweet_handle">@RealDonaldTrump · 刚刚</span>
+                </div>
+            </div>
+            <div class="tweet-content" data-i18n="tweet_content">
+                关税让美国再次伟大！比特币？跌得好！但关税坑...这主意不错！也许我应该投资一些 😉
+            </div>
+            <div class="tweet-stats">
+                <span data-i18n="tweet_retweets">1.2M 转推</span>
+                <span data-i18n="tweet_likes">2.4M 喜欢</span>
+            </div>
+        </section>
+        
+        <!-- 代币信息 -->
+        <section class="pit-token">
+            <h2 class="token-title" data-i18n="token_title">关税坑代币</h2>
+            <p data-i18n="token_desc" style="color: var(--gold); margin-bottom: 20px;">
+                总供应：10亿 TARIFF | 流动性永久锁定 | 0% 税<br>
+                因为真正的关税已经够重了！
+            </p>
+            <div class="contract-box" onclick="copyContract()">
+                <span data-i18n="contract">CA: 0xT4r1ffP1tF0rTh3W1n</span>
+            </div>
+        </section>
+        
+        <!-- 购买区域 -->
+        <section class="buy-section">
+            <a href="#" class="dollar-button" data-i18n="buy_button">💰 购买关税坑</a>
+            <a href="#" class="dollar-button" data-i18n="chart_button">📈 查看图表</a>
+        </section>
     </div>
 
     <script>
-        // 简单的像素动画效果
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.pixel-button');
-            buttons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // 添加点击效果
-                    this.style.transform = 'translateY(4px)';
-                    this.style.borderBottomWidth = '0px';
-                    setTimeout(() => {
-                        this.style.transform = 'translateY(0px)';
-                        this.style.borderBottomWidth = '4px';
-                    }, 100);
-                    
-                    // 这里可以添加实际的链接跳转
-                    const href = this.getAttribute('href');
-                    if (href && href !== '#') {
-                        setTimeout(() => {
-                            window.open(href, '_blank');
-                        }, 200);
+        // 多语言配置
+        const tariffTranslations = {
+            zh: {
+                badge: "💸 特朗普特别赞助 💸",
+                title: "关税坑",
+                slogan: "\"关税一出，BTC进坑，我们填坑致富！\"",
+                card1_title: "🕳️ 特朗普的坑",
+                card1_desc: "每次关税威胁，比特币就掉坑里。但这次，我们把这个坑变成了金矿！",
+                card2_title: "💰 我们的金矿", 
+                card2_desc: "当别人在坑里哭泣时，我们在坑里挖矿。关税坑代币 - 把政治风险变成收益！",
+                card3_title: "🎯 精准嘲讽",
+                card3_desc: "我们不是制造恐慌，我们是在恐慌中制造机会。感谢特朗普的免费营销！",
+                tweet_name: "Donald J. Trump",
+                tweet_handle: "@RealDonaldTrump · 刚刚",
+                tweet_content: "关税让美国再次伟大！比特币？跌得好！但关税坑...这主意不错！也许我应该投资一些 😉",
+                tweet_retweets: "1.2M 转推",
+                tweet_likes: "2.4M 喜欢",
+                token_title: "关税坑代币",
+                token_desc: "总供应：10亿 TARIFF | 流动性永久锁定 | 0% 税<br>因为真正的关税已经够重了！",
+                contract: "CA: 0xT4r1ffP1tF0rTh3W1n",
+                buy_button: "💰 购买关税坑",
+                chart_button: "📈 查看图表"
+            },
+            en: {
+                badge: "💸 Trump Special Sponsor 💸",
+                title: "TARIFF PIT",
+                slogan: "\"Tariffs hit, BTC falls in pit, we fill the pit and get rich!\"",
+                card1_title: "🕳️ Trump's Pit",
+                card1_desc: "Every tariff threat sends Bitcoin into a pit. But this time, we turned that pit into a gold mine!",
+                card2_title: "💰 Our Gold Mine",
+                card2_desc: "While others cry in the pit, we're mining in it. TariffPit Token - turning political risk into profit!",
+                card3_title: "🎯 Perfect Satire", 
+                card3_desc: "We're not creating panic, we're creating opportunity from panic. Thanks for the free marketing, Trump!",
+                tweet_name: "Donald J. Trump",
+                tweet_handle: "@RealDonaldTrump · Just now",
+                tweet_content: "Tariffs make America great again! Bitcoin? Good fall! But TariffPit... not bad idea! Maybe I should invest some 😉",
+                tweet_retweets: "1.2M Retweets",
+                tweet_likes: "2.4M Likes",
+                token_title: "TARIFF PIT TOKEN",
+                token_desc: "Total Supply: 1B TARIFF | Liquidity Locked Forever | 0% Tax<br>Because real tariffs are heavy enough!",
+                contract: "CA: 0xT4r1ffP1tF0rTh3W1n",
+                buy_button: "💰 BUY TARIFF PIT",
+                chart_button: "📈 VIEW CHART"
+            }
+        };
+
+        // 语言切换
+        document.querySelectorAll('.dollar-lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.dollar-lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const lang = this.dataset.lang;
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.dataset.i18n;
+                    if (tariffTranslations[lang][key]) {
+                        element.innerHTML = tariffTranslations[lang][key];
                     }
                 });
             });
+        });
+
+        // 创建金钱雨
+        function createMoneyRain() {
+            const container = document.getElementById('moneyRain');
+            const moneySymbols = ['💵', '💴', '💶', '💷', '💰', '💸'];
             
-            // 像素艺术动画
-            const pixelArt = document.querySelector('.whale-vs-fish');
-            setInterval(() => {
-                pixelArt.style.transform = 'translateX(2px)';
-                setTimeout(() => {
-                    pixelArt.style.transform = 'translateX(-2px)';
-                }, 200);
-            }, 1000);
+            for (let i = 0; i < 20; i++) {
+                const money = document.createElement('div');
+                money.className = 'money-bill';
+                money.textContent = moneySymbols[Math.floor(Math.random() * moneySymbols.length)];
+                money.style.left = Math.random() * 100 + 'vw';
+                money.style.animationDelay = Math.random() * 8 + 's';
+                money.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                money.style.fontSize = (Math.random() * 1 + 1.5) + 'rem';
+                container.appendChild(money);
+            }
+        }
+
+        // 模拟合约复制
+        function copyContract() {
+            const contract = document.querySelector('.contract-box span').textContent;
+            navigator.clipboard.writeText(contract).then(() => {
+                alert('Contract address copied! 💰');
+            });
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            createMoneyRain();
+            
+            // 为卡片添加随机旋转
+            document.querySelectorAll('.satire-card').forEach(card => {
+                card.style.transform = `rotate(${Math.random() * 6 - 3}deg)`;
+            });
+        });
+
+        // 鼠标交互效果
+        document.addEventListener('mousemove', (e) => {
+            const moneyBills = document.querySelectorAll('.money-bill');
+            moneyBills.forEach(money => {
+                const rect = money.getBoundingClientRect();
+                const moneyCenterX = rect.left + rect.width / 2;
+                const moneyCenterY = rect.top + rect.height / 2;
+                
+                const distanceX = e.clientX - moneyCenterX;
+                const distanceY = e.clientY - moneyCenterY;
+                const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+                
+                const maxDistance = 200;
+                const influence = Math.max(0, (1 - distance / maxDistance) * 0.5);
+                
+                if (influence > 0) {
+                    money.style.transform += ` translate(${distanceX * influence}px, ${distanceY * influence}px)`;
+                }
+            });
         });
     </script>
 </body>
-
 </html>
