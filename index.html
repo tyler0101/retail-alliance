@@ -416,6 +416,53 @@
             box-shadow: 12px 12px 0 #000;
         }
 
+        /* 交易平台链接样式 */
+        .exchange-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .exchange-card {
+            background: linear-gradient(135deg, var(--us-blue), var(--us-red));
+            border: 3px solid var(--gold);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exchange-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .exchange-card:hover::before {
+            left: 100%;
+        }
+
+        .exchange-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .exchange-card h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0 #000;
+        }
+
         /* 响应式设计 */
         @media (max-width: 768px) {
             .satire-grid {
@@ -429,6 +476,10 @@
             
             .pit-title {
                 font-size: clamp(2rem, 10vw, 4rem);
+            }
+            
+            .exchange-links {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -496,14 +547,50 @@
                 因为真正的关税已经够重了！
             </p>
             <div class="contract-box" onclick="copyContract()">
-                <span data-i18n="contract">CA: 0x9f8a6efe8115657c1f82adebb61b44304da24444</span>
+                <span data-i18n="contract">CA: 0xT4r1ffP1tF0rTh3W1n</span>
             </div>
+        </section>
+
+        <!-- 交易平台链接 -->
+        <section class="exchange-links">
+            <a href="https://pump.fun" target="_blank" class="exchange-card">
+                <h3>🚀 Pump.fun</h3>
+                <p data-i18n="pump_desc">主要购买平台</p>
+            </a>
+            <a href="https://raydium.io" target="_blank" class="exchange-card">
+                <h3>🦅 Raydium</h3>
+                <p data-i18n="raydium_desc">去中心化交易</p>
+            </a>
+            <a href="https://dexscreener.com" target="_blank" class="exchange-card">
+                <h3>📊 DexScreener</h3>
+                <p data-i18n="dexscreener_desc">实时图表分析</p>
+            </a>
+            <a href="https://birdeye.so" target="_blank" class="exchange-card">
+                <h3>👁️ Birdeye</h3>
+                <p data-i18n="birdeye_desc">价格追踪</p>
+            </a>
         </section>
         
         <!-- 购买区域 -->
         <section class="buy-section">
-            <a href="#" class="dollar-button" data-i18n="buy_button">💰 购买关税坑</a>
-            <a href="#" class="dollar-button" data-i18n="chart_button">📈 查看图表</a>
+            <a href="https://pump.fun" target="_blank" class="dollar-button" data-i18n="buy_button">💰 购买关税坑</a>
+            <a href="https://dexscreener.com/solana/您实际的合约地址" target="_blank" class="dollar-button" data-i18n="chart_button">📈 查看图表</a>
+        </section>
+
+        <!-- 社区链接 -->
+        <section class="exchange-links">
+            <a href="https://t.me/您的电报群" target="_blank" class="exchange-card">
+                <h3>💬 Telegram</h3>
+                <p data-i18n="telegram_desc">官方社区</p>
+            </a>
+            <a href="https://twitter.com/您的推特" target="_blank" class="exchange-card">
+                <h3>🐦 Twitter</h3>
+                <p data-i18n="twitter_desc">最新动态</p>
+            </a>
+            <a href="https://dextools.io" target="_blank" class="exchange-card">
+                <h3>🔧 DexTools</h3>
+                <p data-i18n="dextools_desc">交易工具</p>
+            </a>
         </section>
     </div>
 
@@ -529,7 +616,14 @@
                 token_desc: "总供应：10亿 TARIFF | 流动性永久锁定 | 0% 税<br>因为真正的关税已经够重了！",
                 contract: "CA: 0xT4r1ffP1tF0rTh3W1n",
                 buy_button: "💰 购买关税坑",
-                chart_button: "📈 查看图表"
+                chart_button: "📈 查看图表",
+                pump_desc: "主要购买平台",
+                raydium_desc: "去中心化交易",
+                dexscreener_desc: "实时图表分析",
+                birdeye_desc: "价格追踪",
+                telegram_desc: "官方社区",
+                twitter_desc: "最新动态",
+                dextools_desc: "交易工具"
             },
             en: {
                 badge: "💸 Trump Special Sponsor 💸",
@@ -550,7 +644,14 @@
                 token_desc: "Total Supply: 1B TARIFF | Liquidity Locked Forever | 0% Tax<br>Because real tariffs are heavy enough!",
                 contract: "CA: 0xT4r1ffP1tF0rTh3W1n",
                 buy_button: "💰 BUY TARIFF PIT",
-                chart_button: "📈 VIEW CHART"
+                chart_button: "📈 VIEW CHART",
+                pump_desc: "Main Purchase Platform",
+                raydium_desc: "Decentralized Exchange",
+                dexscreener_desc: "Live Chart Analysis",
+                birdeye_desc: "Price Tracking",
+                telegram_desc: "Official Community",
+                twitter_desc: "Latest Updates",
+                dextools_desc: "Trading Tools"
             }
         };
 
@@ -595,6 +696,12 @@
             });
         }
 
+        // 链接点击统计（可选）
+        function trackLinkClick(platform) {
+            console.log(`Clicked on ${platform}`);
+            // 这里可以添加Google Analytics或其他统计代码
+        }
+
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
             createMoneyRain();
@@ -602,6 +709,14 @@
             // 为卡片添加随机旋转
             document.querySelectorAll('.satire-card').forEach(card => {
                 card.style.transform = `rotate(${Math.random() * 6 - 3}deg)`;
+            });
+
+            // 为交易链接添加点击跟踪
+            document.querySelectorAll('.exchange-card, .dollar-button').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const platform = this.querySelector('h3').textContent;
+                    trackLinkClick(platform);
+                });
             });
         });
 
@@ -628,4 +743,3 @@
     </script>
 </body>
 </html>
-
